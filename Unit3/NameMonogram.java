@@ -1,6 +1,6 @@
 import java.util.Scanner;  // Import the Scanner class
 
-public class Phone {
+public class NameMonogram {
     public static void main(String[] args) throws Exception {
         String fullName = "";
         String firstName = "";
