@@ -1,0 +1,14 @@
+public class cFixing {
+    public static void main(String[] args) throws Exception {
+        double a = 1.2; 
+        double b = 3.0;
+        double c = a * b; 
+        double Target = 3.6;
+        double comparisonValue = 0.0001;
+        if (Math.abs(c - Target) < comparisonValue) {
+            System.out.println("c is 3.6");
+        } else {
+            System.out.println("c is not 3.6");
+        }
+    }
+}
