@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class ProgramFixOne {
+    public static void main(String[] args) throws Exception {
+    // prompt user for age.
+Scanner input = new Scanner(System.in);
+System.out.println("Please enter your age: ");
+int age = input.nextInt();
+
+// are they lucky?
+if (age == 13) {
+System.out.println("Lucky 13!");
+} else {
+    System.out.println("Unlucky not 13!");
+}
+}
+}
