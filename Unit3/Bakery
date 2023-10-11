@@ -1,0 +1,27 @@
+/*
+ * AT JAVA
+ * Bakery Assignment
+ * Lucas Roberge
+ */
+
+import java.util.Scanner;  // Import the Scanner class
+
+public class PieProgram {
+    static public void main (String[] args) {
+        int numPies = 0;
+        double cost = 0;
+        double costConversion = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Hello customer, welcome to our bakery. How many pies would you like?");
+        numPies = scan.nextInt();
+        System.out.println(numPies + " coming right up!");
+        if (numPies >= 3) {
+            cost = numPies * 10;
+            costConversion = cost * 0.1;
+            cost = cost - costConversion;
+        } else {
+            cost = numPies * 10;
+        }
+        System.out.println("Your final total will be " + cost + " dollars. Thank you!");
+    }
+}
