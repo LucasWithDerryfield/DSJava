@@ -1,0 +1,43 @@
+class Fork {
+    final int TOTAL_PRONG = 4;
+    int prong = 1;
+    int angle = 0;
+
+    public int getProng() {
+        return prong;
+    }
+
+    public double getSpeed() {
+        return angle;
+    }
+
+    public void bendProng() {
+        // bend the prong if possible.
+        if (prong < TOTAL_PRONG) {
+            prong = angle + 1;
+        }
+    }
+
+    public void destroyProng() {
+        // destroy the prong if possible.
+        if (prong > 1) {
+            prong = prong - 1;
+        }
+    }
+
+public class OODemo {
+    public static void main(String[] args) {
+        // create an object using the Fork class
+        ForkUtensil fork = new ForkUtensil();
+
+        // what's the initial state?
+        System.out.printf("fork = %d, angle = %4f%n", fork.getFork(), fork.getGear());
+
+        // bend/break the prongs
+        for(int i = 0; i < 3; i++) {
+            System.out.println("Bending and breaking prongs!");
+            prong.getProng();
+            System.out.printf("prong = %d, angle = %90f%n", prong.getProngs(), angle.getAngles());
+            angle.getAngle();
+        }
+    }
