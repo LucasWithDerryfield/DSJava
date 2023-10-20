@@ -1,0 +1,97 @@
+// Lucas Roberge, ATJAVA, Roman Numeral Conversion
+
+import java.util.Scanner;
+
+public class RomanNumerals {
+    public static void main(String[] args) throws Exception {
+        String last = "";
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter the integer you would like translated to Roman numerals.");
+        int origin = scan.nextInt();
+        if (origin > 3999) {
+            System.out.println("Sorry, but the integer is too large.");
+        } else {
+            int conversion1 = origin % 1000;
+            int originalt1 = origin - conversion1;
+            String thousand = "M";
+            int repeat1 = originalt1 / 1000;
+            String thousandfinal = thousand.repeat(repeat1);
+
+            int conversion2 = conversion1 % 100;
+            int originalt2 = conversion1 - conversion2;
+            int repeat2 = originalt2 / 100;
+            String hundredfinal = "";
+
+            if (repeat2 == 9) {
+                hundredfinal = "CM"; // 900
+            } else if (repeat2 == 8) {
+                hundredfinal = "DCCC"; // 800
+            } else if (repeat2 == 7) {
+                hundredfinal = "DCC"; // 700
+            } else if (repeat2 == 6) {
+                hundredfinal = "DC"; // 600
+            } else if (repeat2 == 5) {
+                hundredfinal = "D"; // 500
+            } else if (repeat2 == 4) {
+                hundredfinal = "CD"; // 400
+            } else if (repeat2 == 3) {
+                hundredfinal = "CCC"; // 300
+            } else if (repeat2 == 2) {
+                hundredfinal = "CC"; // 200
+            } else if (repeat2 == 1) {
+                hundredfinal = "C"; // 100
+            }
+
+            int conversion3 = conversion2 % 10;
+            int originalt3 = conversion2 - conversion3;
+            int repeat3 = originalt3 / 10;
+            String tenfinal = "";
+
+            if (repeat3 == 9) {
+                tenfinal = "XC"; // 90
+            } else if (repeat3 == 8) {
+                tenfinal = "LXXX"; // 80
+            } else if (repeat3 == 7) {
+                tenfinal = "LXX"; // 70
+            } else if (repeat3 == 6) {
+                tenfinal = "LX"; // 60
+            } else if (repeat3 == 5) {
+                tenfinal = "L"; // 50
+            } else if (repeat3 == 4) {
+                tenfinal = "XL"; // 40
+            } else if (repeat3 == 3) {
+                tenfinal = "XXX"; // 30
+            } else if (repeat3 == 2) {
+                tenfinal = "XX"; // 20
+            } else if (repeat3 == 1) {
+                tenfinal = "X"; // 10
+            }
+
+            int originlast = origin - originalt1 - originalt2 - originalt3;
+            String lastfinal = "";
+
+            if (originlast == 9) {
+                lastfinal = "IX"; // 9
+            } else if (originlast == 8) {
+                lastfinal = "VIII"; // 8
+            } else if (originlast == 7) {
+                lastfinal = "VII"; // 7
+            } else if (originlast == 6) {
+                lastfinal = "VI"; // 6
+            } else if (originlast == 5) {
+                lastfinal = "V"; // 5
+            } else if (originlast == 4) {
+                lastfinal = "IV"; // 4
+            } else if (originlast == 3) {
+                lastfinal = "III"; // 3
+            } else if (originlast == 2) {
+                lastfinal = "II"; // 2
+            } else if (originlast == 1) {
+                lastfinal = "I"; // 1
+            }
+
+            last = thousandfinal + hundredfinal + tenfinal + lastfinal;
+            System.out.println(last);
+        }
+    }
+}
