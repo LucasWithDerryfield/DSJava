@@ -1,3 +1,5 @@
+//Lucas Roberge ATJAVA Cesium-90
+
 public class Radioactive {
     public static void main(String[] args) throws Exception {
         double cesiumPercent = 100;
