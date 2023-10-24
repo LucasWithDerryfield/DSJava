@@ -1,0 +1,14 @@
+public class Radioactive {
+    public static void main(String[] args) throws Exception {
+        double cesiumPercent = 100;
+        double cesium = 100000;
+        int time = 0;
+        while (cesiumPercent > 1) {
+            time = time + 30;
+            cesium = cesium / 2;
+            cesiumPercent = cesiumPercent / 2;
+            System.out.println("30 years have passed. The amount of material remaining is: " + cesiumPercent + " percent.");
+         }
+         System.out.println("After " + time + " years, the cesium-90 has decayed to " + cesium + " units.");
+    }
+}
