@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+//Lucas Roberge, E Counter, 10/30/23
+
+public class CountE {
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter the phrase you would like evaluated: ");
+        String first = scan.nextLine();
+        int stringSize = first.length();
+        int e = 0;
+        int es = 0;
+        for (int i = stringSize; i >= stringSize; stringSize--) {
+            e = e + 1;
+            char ggg = first.charAt(e);
+            if (ggg == 'e') {
+                System.out.println("There is an E at location " + stringSize);
+                es = es + 1;
+            } else {
+                System.out.println("There is no E at location " + stringSize);
+            }
+            System.out.println("The final E count is: " + es);
+        }
+    }
+}
