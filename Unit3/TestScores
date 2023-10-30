@@ -1,0 +1,25 @@
+//Lucas Roberge, Test Score Average Calculator, 10/30/23
+
+import java.util.Scanner;
+
+public class HW09 {
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(System.in);
+        double totalscore = 0;
+        int scores = 0;
+        double average = 0;
+        double test = 0;
+        System.out.println("Please enter how many test scores you will be entering: ");
+        scores = scan.nextInt();
+        int scoresloop = scores;
+        System.out.println("For every score, simply enter the score in the prompted line. This will repeat until all scores are accounted for.");
+        while (scoresloop > 0) {
+            scoresloop = scoresloop - 1;
+            System.out.println("Please enter a test score: ");
+            test = scan.nextDouble();
+            totalscore = totalscore + test;
+        }
+        average = totalscore / scores;
+        System.out.println("Your final average test score is " + average);
+    }
+}
