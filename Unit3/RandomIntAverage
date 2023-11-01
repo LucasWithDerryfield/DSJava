@@ -1,0 +1,42 @@
+//Lucas Roberge, Random Integer Averages, 11/1/23
+
+public class RandomInts {
+    public static void main(String[] args) throws Exception {
+        int i = 10;
+        int min = 0;
+        int max = 10;
+        int total = 0;
+        double average = 0;
+        while (i > 0) {
+            int random = (int) (Math.random() * (max - min + 1)) + min;
+            total = total + random;
+            i = i - 1;
+        }
+        average = total / 10;
+        System.out.println("The total average is: " + average);
+    }
+}
+
+//Run it 1000 times
+
+/*
+ * int i = 10;
+ * int min = 0;
+ * int max = 1000;
+ * int total = 0;
+ * double average = 0;
+ * while (i > 0) {
+ *  int random = (int) (Math.random() * (max - min + 1)) + min;
+ *  total = total + random;
+ *  i = i - 1;
+ * }
+ * average = total / 1000;
+ * System.out.println("The total average is: " + average);
+ */
+
+ //Does it make sense?
+
+ /*
+  * Techincally yes, but its not truly random. It is psuedo-random, a complicated algorithm made to produce seemingly random numbers.
+  * This means that although the values seem random, it is possible to predict the outcomes, making them not truly random.
+  */
