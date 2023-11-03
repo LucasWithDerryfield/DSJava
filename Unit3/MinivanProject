@@ -1,0 +1,198 @@
+//Lucas Roberge, AT Minivan Project, 11/3/23
+
+class DoorSystem {
+    // variables for all systems
+
+    enum GearState {
+        PARK, NEUTRAL, DRIVE, GEAR1, GEAR2, GEAR3, REVERSE
+    }
+
+    private boolean dashLeft;
+    private boolean dashRight;
+    private boolean childLock;
+    private boolean masterUnlock;
+    private boolean handleInLeft;
+    private boolean handleInRight;
+    private boolean handleOutLeft;
+    private boolean handleOutRight;
+    private GearState gearState;
+
+    public void updateState(String newState) {
+        newState = newState.toUpperCase();
+        if (newState.charAt(0) == '1') {
+            dashLeft = true;
+        } else {
+            dashLeft = false;
+        }
+
+        if (newState.charAt(1) == '1') {
+            dashRight = true;
+        } else {
+            dashRight = false;
+        }
+
+        if (newState.charAt(2) == '1') {
+            childLock = true;
+        } else {
+            childLock = false;
+        }
+
+        if (newState.charAt(3) == '1') {
+            masterUnlock = true;
+        } else {
+            masterUnlock = false;
+        }
+
+        if (newState.charAt(4) == '1') {
+            handleInLeft = true;
+        } else {
+            handleInLeft = false;
+        }
+
+        if (newState.charAt(5) == '1') {
+            handleInRight = true;
+        } else {
+            handleInRight = false;
+        }
+
+        if (newState.charAt(6) == '1') {
+            handleOutLeft = true;
+        } else {
+            handleOutLeft = false;
+        }
+
+        if (newState.charAt(7) == '1') {
+            handleOutRight = true;
+        } else {
+            handleOutRight = false;
+        }
+
+        if (newState.charAt(8) == 'P') {
+            gearState = GearState.PARK;
+        } else if (newState.charAt(8) == 'D') {
+            gearState = GearState.DRIVE;
+        } else if (newState.charAt(8) == '1') {
+            gearState = GearState.GEAR1;
+        } // else if (newState)
+
+    }
+
+    // constructor
+    public DoorSystem(String initState) {
+        this.updateState(initState);
+    }
+
+    public boolean isLeftOpen() {
+        if (gearState == GearState.PARK) {
+            // check other settings.
+            // is it unlocked?
+            if (masterUnlock) {
+                // check other settings.
+                if (handleInLeft && childLock == false) {
+                    return true;
+                } else {
+                    if (handleOutLeft) {
+                        return true;
+                    } else {
+                        if (dashLeft) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+
+                }
+            } else {
+                // door is not unlocked.
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
+
+    public boolean isRightOpen() {
+        if (gearState == GearState.PARK) {
+            // check other settings.
+            // is it unlocked?
+            if (masterUnlock) {
+                // check other settings.
+                if (handleInRight && childLock == false) {
+                    return true;
+                } else {
+                    if (handleOutRight) {
+                        return true;
+                    } else {
+                        if (dashRight) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+
+                }
+            } else {
+                // door is not unlocked.
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
+
+    // public boolean isLeftOpen() {
+    // if (masterUnlock) {
+    // // check other settings.
+    // if (gearState == GearState.PARK) {
+    // //check other settings
+    // } else {
+    // //not in park, cant open
+    // return false;
+    // }
+    // } else {
+    // // masterUnlock is not enabled.
+    // // door is locked.
+    // return false;
+    // }
+
+    // }
+}
+
+public class App {
+
+    public static void checkDoors(DoorSystem doorSystem) {
+        // open flag is true only if at least one door has been opened.
+        boolean openFlag = false;
+
+        if (doorSystem.isLeftOpen()) {
+            System.out.println("Left Door Opens.");
+            openFlag = true;
+        }
+
+        if (doorSystem.isRightOpen()) {
+            System.out.println("Right Door Opens.");
+            openFlag = true;
+        }
+
+        if (openFlag == false) {
+            System.out.println ("Neither door opens.");
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) throws Exception {
+        DoorSystem doorSystem = new DoorSystem("00110110P");
+
+        checkDoors(doorSystem);
+
+        doorSystem.updateState("00010110P");
+        checkDoors(doorSystem);
+
+        doorSystem.updateState("00010110D");
+        checkDoors(doorSystem);
+
+    }
+}
