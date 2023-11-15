@@ -1,0 +1,35 @@
+//Lucas Roberge, AT Java, AT06
+
+import java.time.LocalDate;
+import java.time.DayOfWeek;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        LocalDate dayNow = LocalDate.now();
+        DayOfWeek day1Week = dayNow.withDayOfMonth(1).getDayOfWeek();
+
+        // Formatting
+        System.out.printf("%4s %4s %4s %4s %4s %4s %4s%n", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
+
+        int dayiWeek = day1Week.getValue();
+        int daysInMonth = dayNow.lengthOfMonth();
+        int currentDayOfMonth = dayNow.getDayOfMonth();
+
+        int dayOfWeekCounter = 1;
+
+        for (int i = 1; i < dayiWeek; i++) {
+            System.out.print("     ");
+            dayOfWeekCounter++;
+        }
+
+        for (int i = 1; i <= daysInMonth; i++) {
+            System.out.printf("%4d%s", i, (i == currentDayOfMonth) ? "*" : " ");
+            if (dayOfWeekCounter == 7 || i == daysInMonth) {
+                System.out.println();
+                dayOfWeekCounter = 1;
+            } else {
+                dayOfWeekCounter++;
+            }
+        }
+    }
+}
