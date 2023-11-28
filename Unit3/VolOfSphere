@@ -1,0 +1,14 @@
+public class Svolume {
+
+    public static void main(String[] args) {
+        double radius = 5;
+        double vol = calculator(radius);
+
+        System.out.println("The volume of a sphere with a radius of " + radius + " is " + vol);
+    }
+
+    public static double calculator(double radius) {
+        double vol = (4 / 3) * Math.PI * Math.pow(radius, 3);
+        return vol;
+    }
+}
