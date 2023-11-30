@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class SmlNum {
+
+    public static double small(double x, double y, double z) {
+        if (x <= y && x <= z) {
+            return x;
+        } else if (y <= x && y <= z) {
+            return y;
+        } else {
+            return z;
+        }
+    }
+
+    public static void main(String[] args) {
+        double number1;
+        double number2;
+        double number3;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Please enter your three numbers to be scanned: ");
+        number1 = scan.nextDouble();
+        number2 = scan.nextDouble();
+        number3 = scan.nextDouble();
+        double result = small(number1, number2, number3);
+
+        System.out.println("The smallest value from the list is " + result);
+    }
+}
