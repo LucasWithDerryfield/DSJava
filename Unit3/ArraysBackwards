@@ -1,0 +1,38 @@
+//Lucas Roberge, ATJAVA, Array Sorting
+
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        int[] values = new int[10];
+        int num = 0;
+        int nummax = 10;
+        String holder = "";
+        Scanner scan = new Scanner(System.in);
+        
+        while (num < nummax) {
+            holder = scan.next();
+            if (holder == ("q")) {
+                break;
+            }
+            // add values to array
+            values[num++] = Integer.parseInt(holder);
+        }
+        //asterisks
+        System.out.print("*");
+        for (int i = 0; i < num; i++) {
+            System.out.print(values[i]);
+            if (i < num - 1) {
+                System.out.print("*");
+            }
+        }
+        System.out.println("*");
+        //backwards
+        for (int i = num - 1; i >= 0; i--) {
+            System.out.print(values[i]);
+            if (i > 0) {
+                System.out.print(",");
+            }
+        }
+    }
+}
