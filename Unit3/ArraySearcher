@@ -1,0 +1,41 @@
+//Lucas Roberge, ATJAV HW15
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class App {
+    public static void main(String[] args) {
+        int arraySize = 10000;
+        int[] array = new int[arraySize];
+        rando(array);
+        for (int i = 0; i < 10; i++) {
+            int target = randotarget(arraySize);
+            boolean linResult = lin(array, target);
+            Arrays.sort(array);
+            int binsearch = Arrays.binarySearch(array, target);
+            System.out.println("Target Value: " + target);
+            System.out.println("Linear Search Result: " + linResult);
+            System.out.println("Binary Search Result: " + binsearch);
+        }
+    }
+    public static boolean lin(int[] array, int target) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == target) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void rando(int[] array) {
+        //put a bunch of random ints in the array
+        Random rand = new Random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = rand.nextInt(array.length) + 1;
+        }
+    }
+    public static int randotarget(int arraySize) {
+        //random target int
+        Random rand = new Random();
+        return rand.nextInt(arraySize) + 1;
+    }
+}
