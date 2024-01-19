@@ -1,0 +1,31 @@
+//Lucas Roberge, AT06 PROJECT B, ATJAVA
+import java.util.ArrayList;
+import java.util.Scanner;
+//reused some former code for some parts here, ignore weird variable names
+public class App {
+    public static void main(String[] args) {
+        ArrayList<Integer> scores = new ArrayList<>();
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter a score or enter 'q' to quit: ");
+            String input = scan.nextLine();
+            if (input.equals("q")) {
+                break;
+            } else {
+                int score = Integer.parseInt(input);
+                    scores.add(score);
+            }
+        }
+        System.out.println(scores);
+        System.out.println("Final:");
+        int fnl = 0;
+        for (int i = scores.size() - 1; i >= 0; i--) {
+            if (i % 2 == 0) {
+                fnl += scores.get(i);
+            } else {
+                fnl -= scores.get(i);
+            }
+        }
+        System.out.println(fnl);
+    }
+}
