@@ -1,0 +1,62 @@
+//Lucas Roberge, ATJAVA PROJECT 06C, 1/20/23
+
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        char[][] player = {
+                {' ', ' ', ' '},
+                {' ', ' ', ' '},
+                {' ', ' ', ' '}
+        };
+        char currentPlayer = 'X';
+        while (true) {
+            printer(player);
+            play(player, currentPlayer);
+            if (check(player)) {
+                printer(player);
+                System.out.println("Winner: " + currentPlayer);
+                break;
+            }
+            if (currentPlayer == 'X') {
+                currentPlayer = 'O';
+            } else {
+                currentPlayer = 'X';
+            }
+        }
+    }
+    private static void printer(char[][] board) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    private static void play(char[][] board, char currentPlayer) {
+        Scanner scan = new Scanner(System.in);
+        int row, col;
+        do {
+            System.out.print("Player " + currentPlayer + ", enter row (1-3) and column (1-3) separated by space: ");
+            row = scan.nextInt() - 1;
+            col = scan.nextInt() - 1;
+        } while (board[row][col] != ' ');
+        board[row][col] = currentPlayer;
+    }
+    private static boolean check(char[][] board) {
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
+                return true;
+            }
+            if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ') {
+                return true;
+            }
+        }
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') {
+            return true;
+        }
+        return board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ';
+    }
+}
