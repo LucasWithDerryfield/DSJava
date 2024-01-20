@@ -1,0 +1,45 @@
+//Lucas Roberge, Lesson 18 D, 1/20/24
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        ArrayList<Integer> central = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        //run through loop to grap values
+        while (true) {
+            System.out.print("Enter an integer or 'q' to quit: ");
+            String input = scanner.nextLine();
+            if (input.equals("q")) {
+                break;
+            } else {
+                int number = Integer.parseInt(input);
+                central.add(number);
+            }
+        }
+        //Use method to remove odd numbers
+        remover(central);
+        //Print the list
+        System.out.println("List with no odd numbers:");
+        for (int i = 0; i < central.size(); i++) {
+            System.out.println(central.get(i));
+        }
+    }
+    private static void remover(ArrayList<Integer> num) {
+        //Remove odds while iterating through array list
+        for (int i = 0; i < num.size(); i++) {
+            int number = num.get(i);
+            if (isOdd(number)) {
+                num.remove(i);
+                i--;
+            }
+        }
+    }
+    private static boolean isOdd(int number) {
+        // Checks if odd
+        return number % 2 != 0;
+    }
+}
+
+//this includes '1' as an odd number and '0' as even. I believe this is the case? should '0' be a non-value?
