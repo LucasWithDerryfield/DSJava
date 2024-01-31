@@ -1,0 +1,33 @@
+//Lucas Roberge, ATJAVA, Lesson20A, 1/30/24
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        //did i use this file path correctly?
+        String filePath = "customerdata.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        System.out.println("---------------------------------------");
+        System.out.printf("%6s | %12s | %12s%n", "ID", "Name", "Balance");
+        System.out.println("---------------------------------------");
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            String[] data = line.split(",\\s*"); //delimeter
+            String id = filler(data[0], 6);
+            String names = data[1];
+            String balance = format(Double.parseDouble(data[2]));
+            //printer (formatted print is difficult, had to get help online. could we meet over this?)
+            System.out.printf("%s | %12s | $%12s%n", id, names, balance);
+        }
+        System.out.println("---------------------------------------");
+    }
+    //formatting helpers
+    private static String filler(String value, int width) {
+        return String.format("%0" + width + "d", Integer.parseInt(value));
+    }
+    private static String format(double value) {
+        return String.format("%,.2f", value);
+    }
+}
