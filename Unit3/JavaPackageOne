@@ -1,0 +1,11 @@
+package org.derryfield.math;
+
+public class Sphere {
+    public static double findSphere(double r) {
+        return (4.0/3.0) * Math.PI * Math.pow(r, 3);
+    }
+
+    public static double findSurfSphere(double r) {
+        return 4 * Math.PI * Math.pow(r, 2);
+    }
+}
