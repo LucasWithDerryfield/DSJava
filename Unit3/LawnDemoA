@@ -1,0 +1,30 @@
+import mow.Yard;
+import java.util.Scanner;
+
+public class Demo {
+    public static void main(String[] args) {
+
+        clearScreen();
+        Yard yard = new Yard();
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Please enter height of lawn: ");
+        int height = scan.nextInt();
+
+        System.out.println("Please enter width of lawn: ");
+        int width = scan.nextInt();
+
+        yard.createLawn(height + 2, width + 2);
+
+        yard.printLawn();;
+
+
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+}
