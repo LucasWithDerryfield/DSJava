@@ -1,0 +1,51 @@
+// Lucas Roberge, ATJAV, Cougar Cafe 2
+
+import java.util.Scanner;
+
+public class CougarCafe2 {
+    enum Days {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+    enum DiscountAssign {
+        NO_DISCOUNT, MONDAY_DISCOUNT, CHILD_DISCOUNT, SENIOR_DISCOUNT
+    }
+    public static void main(String[] args) {
+        System.out.println("You approach the customer's table.");
+        System.out.println("The customer asks if today is Monday and requests the Monday discount. Is it Monday? (y = Yes, n = No)");
+        Scanner scan = new Scanner(System.in);
+        String answer1 = scan.nextLine();
+        Days currentDay = Days.MONDAY; // Set the default day to Monday
+        if (answer1.equals("n")) {
+            currentDay = Day.TUESDAY; // If it's not Monday, set it to another day
+        }
+        System.out.println("You ask the customer's age. What do they respond?");
+        int age = scan.nextInt();
+        DiscountAssign discountType = DiscountAssign.NO_DISCOUNT;
+        if (currentDay == Day.MONDAY) {
+            discountType = DiscountAssign.MONDAY_DISCOUNT;
+        } else if (age < 13) {
+            discountType = DiscountAssign.CHILD_DISCOUNT;
+        } else if (age >= 50) {
+            discountType = DiscountAssign.SENIOR_DISCOUNT;
+        }
+        System.out.println("What is the original cost of the meal?");
+        double originCost = scan.nextDouble();
+        double discountPercentage = 0;
+        switch (discountType) {
+            case MONDAY_DISCOUNT:
+                discountPercentage = 0.05;
+                break;
+            case CHILD_DISCOUNT:
+                discountPercentage = 0.075;
+                break;
+            case SENIOR_DISCOUNT:
+                discountPercentage = 0.15;
+                break;
+            default:
+                discountPercentage = 0;
+                break;
+        }
+        double finalCost = originCost - (originCost * discountPercentage);
+        System.out.println("Your final total is " + finalCost + " dollars.");
+    }
+}

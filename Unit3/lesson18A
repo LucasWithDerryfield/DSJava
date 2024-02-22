@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class App {
+    public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<>();
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter a name or enter '#' to quit: ");
+            String input = scan.nextLine();
+            if (input.equals("#")) {
+                break;
+            } else {
+                names.add(input);
+            }
+        }
+        System.out.println("Names:");
+        for (String name : names) {
+            System.out.println(name);
+        }
+    }
+}

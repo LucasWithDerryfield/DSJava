@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class QuizProgram {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int scorer;
+        try {
+            //i got this new scanner layout off of stackoverflow. is this a valid use of it?
+            scorer = tries(scanner);
+            System.out.println("Added: " + scorer);
+            //catch the errors
+        } catch (ArithmeticException exception) {
+            System.out.println("Input not valid.");
+        }
+    }
+
+    public static int tries(Scanner in) {
+        System.out.println("Enter quiz score (0-100): ");
+        int scores = in.nextInt();
+        //check for validity
+        if (scores < 0 || scores > 100) {
+            throw new ArithmeticException("Invalid Input.");
+        }
+        return scores;
+    }
+}

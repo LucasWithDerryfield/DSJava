@@ -1,0 +1,40 @@
+//Lucas Roberge, ATJAVA lesson 18, 1/20/24
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        ArrayList<Double> scores = new ArrayList<>();
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter a score or enter 'q' to quit: ");
+            String input = scan.nextLine();
+            if (input.equals("q")) {
+                break;
+            } else {
+                double convertedScore = Double.parseDouble(input);
+                scores.add(convertedScore);
+            }
+        }
+        System.out.println("Scores:");
+        //round the values using the method
+        for (int i = 0; i < scores.size(); i++) {
+            System.out.println(rounder(scores.get(i)));
+        }
+        double sum = 0;
+        for (int i = 0; i < scores.size(); i++) {
+            sum = sum + scores.get(i);
+        }
+        if (scores.size() > 0) {
+            double average = sum / scores.size();
+            System.out.println("Calculated average of all values: " + rounder(average));
+        } else {
+            System.out.println("No scores entered.");
+        }
+    }
+    //helper method to round to two decimal places
+    private static double rounder(double value) {
+        return Math.round(value * 100.0) / 100.0;
+    }
+}

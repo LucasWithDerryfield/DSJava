@@ -1,0 +1,84 @@
+//Lucas Roberge, Die Class AT Java, 12/6/23
+
+import java.util.Random;
+
+class Die {
+
+    private int allSides;
+
+    public Die() {
+        this.allSides = 6;
+    }
+
+    public Die(int initialValue) {
+        if (initialValue < 1 || initialValue > 6) {
+            System.out.println("Error. Resetting values.");
+            this.allSides = 6;
+        } else {
+            this.allSides = initialValue;
+        }
+    }
+
+    public int roll() {
+        Random rando = new Random();
+        return rando.nextInt(this.allSides) + 1;
+    }
+
+    public void err(int num1) {
+        if (num1 < 1 || num1 > 6) {
+            System.out.println("Error on value: " + num1);
+        }
+    }
+}
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        Die die = new Die(1);
+        int rando = die.roll();
+        if (rando == 1) {
+            System.out.println("You rolled a 1.");
+            System.out.println("-----");
+            System.out.println("|   |");
+            System.out.println("| . |");
+            System.out.println("|   |");
+            System.out.println("-----");
+        } else if (rando == 2) {
+            System.out.println("You rolled a 2.");
+            System.out.println("-----");
+            System.out.println("|.  |");
+            System.out.println("|   |");
+            System.out.println("|  .|");
+            System.out.println("-----");
+        } else if (rando == 3) {
+            System.out.println("You rolled a 3.");
+            System.out.println("-----");
+            System.out.println("|.  |");
+            System.out.println("| . |");
+            System.out.println("|  .|");
+            System.out.println("-----");
+        } else if (rando == 4) {
+            System.out.println("You rolled a 4.");
+            System.out.println("-----");
+            System.out.println("|. .|");
+            System.out.println("|   |");
+            System.out.println("|. .|");
+            System.out.println("-----");
+        } else if (rando == 5) {
+            System.out.println("You rolled a 5.");
+            System.out.println("-----");
+            System.out.println("|. .|");
+            System.out.println("| . |");
+            System.out.println("|. .|");
+            System.out.println("-----");
+        } else if (rando == 6) {
+            System.out.println("You rolled a 6.");
+            System.out.println("-----");
+            System.out.println("|. .|");
+            System.out.println("|. .|");
+            System.out.println("|. .|");
+            System.out.println("-----");
+        } else {
+            die.err(rando);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+//Lucas Roberge, ATJAVA Lesson20B, 1/31/24
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        String filePath = "characters.txt";
+        BufferedReader checks = new BufferedReader(new FileReader(filePath));
+        int total = 0;
+        int letters = 0;
+        int digits = 0;
+        int cs;
+        while ((cs = checks.read()) != -1) {
+            char character = (char) cs;
+            System.out.print(character);
+            total++;
+            if (Character.isLetter(character)) {
+                letters++;
+            } else if (Character.isDigit(character)) {
+                digits++;
+            }
+        }
+        System.out.println("Character Count: " + total);
+        System.out.println("Letter Count: " + letters);
+        System.out.println("Digit Count: " + digits);
+    }
+}

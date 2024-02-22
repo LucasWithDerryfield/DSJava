@@ -1,0 +1,12 @@
+import org.derryfield.math.Sphere;
+
+public class PackageTest {
+    public static void main(String[] args) {
+        double radius = 9.0;
+        double volume = Geometry.findSphere(radius);
+        double surface = Geometry.findSurfSphere(radius);
+        System.out.println("Radius: " + radius);
+        System.out.println("Vol: " + volume);
+        System.out.println("Surface: " + surface);
+    }
+}

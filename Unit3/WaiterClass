@@ -1,0 +1,72 @@
+// Lucas Roberge, AT JAVA, Waiter Discounts
+
+import java.util.Scanner;
+
+public class Waiter {
+    public static void main(String[] args) throws Exception {
+        System.out.println("You approach the customer's table.");
+        System.out.println("The customer asks if today is Monday, and requests the Monday discount. Is it Monday? (y = Yes, n = No)");
+        Scanner scan = new Scanner(System.in);
+        String answer1 = scan.nextLine();
+        int condition1 = 0;
+        int condition2 = 0;
+        int condition3 = 0;
+        double discount = 0;
+        if (answer1 == "y") {
+            System.out.println("Today is Monday, and the discount will be applied.");
+            condition1 = 1;
+        } else {
+            System.out.println("Today is not Monday, and the discount will not be applied.");
+            condition1 = 0;
+        }
+        System.out.println("You ask the customer's age. What do they respond?");
+        int age = scan.nextInt();
+        if (age < 13) {
+            System.out.println("You are eligable for our children's discount.");
+            condition2 = 1;
+        } else {
+            System.out.println("You are not eligable for our children's discount.");
+            condition2 = 0;
+        }
+        if (age >= 50) {
+            System.out.println("You are eligable for our senior discount.");
+            condition3 = 1;
+        } else {
+            System.out.println("You are not eligable for our senior discount.");
+        }
+        System.out.println("What is the original cost of the meal?");
+        double originCost = scan.nextDouble();
+        if (condition1 == 1) {
+            discount = 0.05;
+            if (condition2 == 1) {
+                discount = 0.075;
+            }
+            if (condition3 == 1) {
+                discount = 0.15;
+            }
+            double conversion = 100 * (discount / originCost);
+            double finalCost = originCost - conversion;
+            System.out.println("Your final total is " + finalCost + " dollars.");
+        } else {
+            if (condition2 == 1) {
+                discount = 0.05;
+                double conversion = 100 * (discount / originCost);
+                double finalCost = originCost - conversion;
+                System.out.println("Your final total is " + finalCost + " dollars.");
+            }
+            }
+            if (condition3 == 1) {
+                discount = 0.075;
+                double conversion = 100 * (discount / originCost);
+                double finalCost = originCost - conversion;
+                System.out.println("Your final total is " + finalCost + " dollars.");
+            }
+            if (discount == 0) {
+                System.out.println("Your final total is " + originCost + " dollars.");
+            }
+                
+            }
+            
+        
+    }
+

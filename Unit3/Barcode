@@ -1,0 +1,53 @@
+//Lucas Roberge, AT JAVA, Barcode Project
+
+import java.util.Scanner;
+
+public class Barcode {
+
+    public static String getBarCode(String zips) {
+        //pre-generate codes for 0-9
+        String[] code = { "||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::" };
+        int total = 0;
+        
+        for (int i = 0; i < zips.length(); i++) {
+            //convert each character to its int value
+            int digit = Character.getNumericValue(zips.charAt(i));
+            //add it to collect the code
+            total = total + digit;
+        }
+        //ensure the digit is a multiple of 10
+        int checkDigit = (10 - (total % 10)) % 10;
+        String barcodefnl = "|";
+        //generate the code through the array
+        for (int i = 0; i < zips.length(); i++) {
+            //get int value of char
+            int digit = Character.getNumericValue(zips.charAt(i));
+            //add to the code
+            barcodefnl = barcodefnl + code[digit];
+        }
+        barcodefnl = barcodefnl + code[checkDigit] + "|";
+        return barcodefnl;
+    }
+
+    public static void main(String[] args) {
+        //set up the scanner
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a 5-digit zip code: ");
+        String zip = scanner.next();
+
+        //make sure zip input is 5 long and is only numbers to avoid invalids
+        if (zip.length() == 5 && zip.matches("[0-9]+")) {
+            //return the method
+            String barcodestr = getBarCode(zip);
+            System.out.println("The final code is: " + barcodestr);
+            //error codes to help with bug fixing, tried some NOT operator stuff here to cover my bases
+        } else if (zip.length() != 5) {
+            System.out.println("Error: input must be 5 characters long");
+            if (!zip.matches("[0-9]+")) {
+                System.out.println("Auxillary Error: input must be integers");
+            }
+        } else {
+            System.out.println("Error: input must be integers");
+        }
+    }
+}

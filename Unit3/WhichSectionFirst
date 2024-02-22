@@ -1,0 +1,61 @@
+//Lucas Roberge, AT JAVA, Which Section First, 12/14/23
+
+import java.util.Scanner;
+
+class Sections {
+    public static int leadingNumber(String section) {
+        int leading = 0;
+        char leading1;
+        leading1 = section.charAt(0);
+        leading = Integer.valueOf(leading1);
+        return leading;
+    }
+
+    public static String truncateSection(String section) {
+        return section.substring(2);
+    }
+
+    public static String whoIsFirst(String section1, String section2) {
+        int sec1num1 = Sections.leadingNumber(section1);
+        int sec2num1 = Sections.leadingNumber(section2);
+
+        if (sec1num1 < sec2num1) {
+            return section1;
+        } else if (sec1num1 > sec2num1) {
+            return section2;
+        } else {
+            String truncated1 = Sections.truncateSection(section1);
+            String truncated2 = Sections.truncateSection(section2);
+            if (truncated1.length() < truncated2.length()) {
+                return section1;
+            } else if (truncated1.length() > truncated2.length()) {
+                return section2;
+            } else {
+                if (section1.equals(section2)) {
+                    return section1;
+                } else {
+                    return section2;
+                }
+            }
+        }
+    }
+}
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        //found this cool way to use arrays so i can compare strings. very useful and quick.
+        String[][] tests = {
+            {"1.13.2", "1.2.4.1"},
+            {"1.3", "1.3.1"},
+            {"1.2.3", "1.2.3"}
+        };
+        //here is the comparison
+        for (String[] testCase : tests) {
+            String firstSection = testCase[0];
+            String secondSection = testCase[1];
+
+            String result = Sections.whoIsFirst(firstSection, secondSection);
+            System.out.println("Between " + firstSection + " and " + secondSection + ", " + result + " is first because " + result + " is earlier in the textbook.");
+        }
+    }
+}

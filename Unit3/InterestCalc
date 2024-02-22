@@ -1,0 +1,24 @@
+//Lucas Roberge ATJAVA Interest Calculator
+
+import java.util.Scanner;
+
+public class Interest {
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner (System.in);
+        double interestRate = 0;
+        int i = 1;
+        System.out.println("What is the requested interest rate? ");
+        interestRate = scan.nextDouble();
+        System.out.println("What is the initial balance in dollars? ");
+        double balance = scan.nextDouble();
+        double converter = interestRate / 100;
+        System.out.println("Year | Earnings | Balance |");
+        while (i <= 5) {
+            double balance1 = converter / balance;
+            balance1 = balance1 * 100;
+            balance = balance + balance1;
+            System.out.println(i + "|" + balance1 + "|" + balance);
+            i = i + 1;
+        }
+    }
+}

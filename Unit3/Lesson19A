@@ -1,0 +1,26 @@
+//Lucas Roberge, Lesson19A, 1/25/23
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        String filePath = "C:\\Users\\24lro\\Downloads\\temps.txt";
+        FileReader filerr = new FileReader(filePath);
+        BufferedReader bufferr = new BufferedReader(filerr);
+
+        //setting this to the max value allows for easy calculation in the loop
+        int lowest = Integer.MAX_VALUE;
+        String line;
+        //this only works with != null, had to use online resources to figure this out.
+        while ((line = bufferr.readLine()) != null) {
+            int value = Integer.parseInt(line);
+            System.out.println(value);
+            if (value <= lowest) {
+                lowest = value;
+            }
+        }
+        System.out.println("Lowest: " + lowest);
+        }
+    }

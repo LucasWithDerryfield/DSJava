@@ -1,0 +1,39 @@
+//Lucas Roberge, Lesson19B, 1/25/23
+//The text file paths arent working, but I checked and the code is correct. What happened?
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        String inputFilePath = "quizzes.txt";
+        String outputFilePath = "quizzesMod.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
+        double total = 0;
+        int count = 0;
+        String line;
+        //read and print
+        while ((line = reader.readLine()) != null) {
+            double value = Double.parseDouble(line);
+            total += value;
+            writer.write("Quiz " + zeroer(count, 3) + ": " + doubleConvert(value));
+            writer.newLine();
+            count++;
+        }
+        double average = total / count;
+        writer.newLine();
+        writer.write("Average:   " + doubleConvert(average));
+        System.out.println("Done!");
+    }
+    //private methods for formatting help
+    private static String zeroer(int value, int width) {
+        return String.format("%0" + width + "d", value);
+    }
+    private static String doubleConvert(double value) {
+        return String.format("%.2f", value);
+    }
+}

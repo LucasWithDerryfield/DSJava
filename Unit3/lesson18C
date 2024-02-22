@@ -1,0 +1,55 @@
+//Lucas Roberge, ATJAVA lesson 18 C, 1/20/24
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        ArrayList<Double> temperatures = new ArrayList<>();
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter a temperature or enter 'q' to quit: ");
+            String input = scan.nextLine();
+            if (input.equals("q")) {
+                break;
+            } else {
+                double temperature = Double.parseDouble(input);
+                temperatures.add(temperature);
+            }
+        }
+        System.out.println("Temperatures:");
+        double lowest = findLow(temperatures);
+        //print the array
+        for (int i = 0; i < temperatures.size(); i++) {
+            double now = temperatures.get(i);
+            System.out.print(rounder(now));
+            if (now == lowest) {
+                System.out.print(" <= lowest");
+            }
+            System.out.println();
+        }
+        if (temperatures.size() > 0) {
+            System.out.println("Lowest temperature: " + rounder(lowest));
+        } else {
+            System.out.println("No temperatures entered.");
+        }
+    }
+    private static double findLow(ArrayList<Double> temperatures) {
+        //if nothing entered
+        if (temperatures.size() == 0) {
+            return 0;
+        }
+        //find the lowest value
+        double lowest = temperatures.get(0);
+        for (int i = 1; i < temperatures.size(); i++) {
+            if (temperatures.get(i) < lowest) {
+                lowest = temperatures.get(i);
+            }
+        }
+        return lowest;
+    }
+    // Helper method to round to two decimal places. decided to keep so exact temps wouldnt be too long
+    private static double rounder(double value) {
+        return Math.round(value * 100.0) / 100.0;
+    }
+}

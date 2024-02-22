@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Cookies {
+    public static void main(String[] args) throws Exception {
+        final double price = 0.99;
+        int numCookies = 0;
+        double discount = 0;
+        double finalPrice = 0;
+        double discountPrice = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("How many cookies would you like to purchase?");
+        numCookies = scan.nextInt();
+        System.out.println(numCookies + " coming right up!");
+        
+        if (numCookies <= 6) {
+            finalPrice = numCookies * price;
+            System.out.println("Your total price is " + finalPrice);
+        }
+        if (numCookies > 6 && numCookies < 12); {
+            discount = 2.5;
+            finalPrice = numCookies * price;
+            discountPrice = (finalPrice / discount);
+            finalPrice = finalPrice - discountPrice;
+            System.out.println("Your total price is " + finalPrice);
+        }
+        if (numCookies > 12 && numCookies < 24); {
+            discount = 5;
+            finalPrice = numCookies * price;
+            discountPrice = (finalPrice / discount);
+            finalPrice = finalPrice - discountPrice;
+            System.out.println("Your total price is " + finalPrice);
+        }
+        if (numCookies > 24);{
+            discount = 15;
+            finalPrice = numCookies * price;
+            discountPrice = (finalPrice / discount);
+            finalPrice = finalPrice - discountPrice;
+            System.out.println("Your total price is " + finalPrice);
+        }
+        
+    }
+}

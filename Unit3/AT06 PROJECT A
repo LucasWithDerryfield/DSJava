@@ -1,0 +1,38 @@
+//Lucas Roberge, AT06 Project A, ATJAVA
+
+import java.util.Random;
+import java.util.Arrays;
+public class App {
+    public static void main(String[] args) throws Exception {
+        //initialize
+        int[] arr = new int[10];
+        Random rand = new Random();
+        //fill the array
+        for (int i = 0; i < 10; i++) {
+            arr[i] = rand.nextInt(100);
+        }
+        System.out.println("Even Index:");
+        for (int i = 0; i < arr.length; i += 2) {
+            System.out.println(arr[i]);
+        }
+        System.out.println();
+        System.out.println("Even Elements:");
+        for (int n : arr) { //this advanced loop iterates through each element of the array. more efficient!
+            if (n % 2 == 0) {
+                System.out.println(n);
+            }
+        }
+        System.out.println();
+        System.out.println("Reverse:");
+        for (int i = arr.length - 1; i >= 0; i--) {
+            System.out.println(arr[i]);
+        }
+        System.out.println();
+        System.out.println("First Element:");
+        System.out.println(arr[0]);
+        System.out.println();
+        System.out.println("Last Element");
+        int plc = arr[arr.length - 1];
+        System.out.println(plc);
+    }
+}

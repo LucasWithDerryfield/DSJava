@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        int[] values = new int[100];
+        int starter = 0;
+        int max = 100;
+        String holder = "";
+        Scanner input = new Scanner(System.in);
+        while (starter < max) {
+            System.out.printf("Enter a test score or 'q' to quit: ");
+            if (input.hasNext("q") || input.hasNext("Q")) {
+                input.next();
+                break;
+            } else {
+                holder = input.next();
+                values[starter++] = Integer.parseInt(holder);
+            }
+        }
+        System.out.println("Here are the test scores you have entered:");
+        for (int i = 0; i < starter; i++) {
+            System.out.println(values[i]);
+        }
+        System.out.println("Would you like to drop the lowest test score? If yes, type 'y'. If no, type 'n'.");
+        if (input.next().equalsIgnoreCase("y")) {
+            dropLowestScore(values, starter);
+            System.out.println("Here are the remaining scores:");
+            for (int i = 0; i < starter - 1; i++) {
+                System.out.println(values[i]);
+            }
+        } else {
+            System.out.println("Okay, no scores will be dropped.");
+        }
+    }
+    public static void dropLowestScore(int[] tests, int length) {
+        if (length <= 1) {
+            return;
+        }
+        int small = 0;
+        for (int i = 1; i < length; i++) {
+            if (tests[i] < tests[small]) {
+                small = i;
+            }
+        }
+        for (int i = small; i < length - 1; i++) {
+            tests[i] = tests[i + 1];
+        }
+    }
+}
