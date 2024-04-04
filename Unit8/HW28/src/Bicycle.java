@@ -67,15 +67,15 @@ class BikeDemo {
         }
 
         //check speed
-        System.out.println("Regular Bicycle Brake: " + regularBicycle.getSpeed());
-        System.out.println("Geared Bicycle Brake: " + gearedBicycle.getSpeed());
+        System.out.println("Regular Bicycle Speed: " + regularBicycle.getSpeed());
+        System.out.println("Geared Bicycle Speed: " + gearedBicycle.getSpeed());
 
         //brake
         for (int i = 0; i < 5; i++) {
             regularBicycle.brake();
             gearedBicycle.brake();
         }
-        
+
         //check speed
         System.out.println("Regular Bicycle Brake: " + regularBicycle.getSpeed());
         System.out.println("Geared Bicycle Brake: " + gearedBicycle.getSpeed());
