@@ -10,11 +10,11 @@ public class Demo {
 
         Yard yard = new Yard(width + 2, height + 2);
         Mower mower = new Mower(1, 1, 1);
+        mower.randomizeMower(yard);
 
-        while (mower.colFind() < width + 1) {
+        while (mower.updateMower(yard)) {
             yard.printLawn(mower);
             delay(500);
-            mower.Forward();
             clearScreen();
         }
 

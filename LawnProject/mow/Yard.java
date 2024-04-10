@@ -69,25 +69,25 @@ public class Yard {
 
     public void printLawn(Mower mower) {
         int height = LAWN_ARRAY.length;
-    int width = LAWN_ARRAY[0].length;
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            if (mower != null && i == mower.dirFind() && j == mower.dirFind()) {
-                //Change the icon of the mover depending
-                if (mower.dirFind() == 0) {
-                    System.out.print("^");
-                } else if (mower.dirFind() == 1) {
-                    System.out.print(">");
-                } else if (mower.dirFind() == 2) {
-                    System.out.print("v");
-                } else if (mower.dirFind() == 3) {
-                    System.out.print("<");
+        int width = LAWN_ARRAY[0].length;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (mower != null && i == mower.rowFind() && j == mower.colFind()) {
+                    //show the mower icon
+                    if (mower.dirFind() == 0) {
+                        System.out.print("^");
+                    } else if (mower.dirFind() == 1) {
+                        System.out.print(">");
+                    } else if (mower.dirFind() == 2) {
+                        System.out.print("v");
+                    } else if (mower.dirFind() == 3) {
+                        System.out.print("<");
+                    }
+                } else {
+                    System.out.print(LAWN_ARRAY[i][j]);
                 }
-            } else {
-                System.out.print(LAWN_ARRAY[i][j]);
             }
+            System.out.println();
         }
-        System.out.println();
-    }
     }
 }
