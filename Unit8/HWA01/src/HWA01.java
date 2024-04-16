@@ -4,55 +4,40 @@ import java.awt.geom.AffineTransform;
 
 public class HWA01 extends JFrame {
 
-    private Board board;
-
     public HWA01() {
-        setTitle("Board Application");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 400);
-        setLocationRelativeTo(null);
-        board = new Board();
+        setTitle("Rectangle Rotate");
+        //Make the board for drawing
+        Board board = new Board();
         board.setPreferredSize(new Dimension(350, 350));
         board.setBackground(Color.CYAN);
+        //add it to the display
         getContentPane().add(board);
-        transformRectangle();
+        //center and display
+        setLocationRelativeTo(null);
         setVisible(true);
     }
-    private void transformRectangle() {
-        int boardWidth = board.getWidth();
-        int boardHeight = board.getHeight();
-        AffineTransform translation = new AffineTransform();
-        translation.translate((boardWidth - 150) / 2.0, (boardHeight - 150) / 2.0);
-        double centerX = boardWidth / 2.0;
-        double centerY = boardHeight / 2.0;
-        AffineTransform rotation = new AffineTransform();
-        rotation.rotate(Math.toRadians(22.5), centerX, centerY); //rotate the rectangle
-        //combine
-        AffineTransform transform = new AffineTransform();
-        transform.concatenate(translation);
-        transform.concatenate(rotation);
-        Shape transformedRectangle = transform.createTransformedShape(new Rectangle(150, 150));
-        board.setTransformedRectangle(transformedRectangle);
-        setLocationRelativeTo(null);
-    }
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(HWA01::new);
+        SwingUtilities.invokeLater(() -> new HWA01()); //necessary? wouldnt work and found this.
     }
-}
-class Board extends JPanel {
-    private Shape transformedRectangle;
-    public void setTransformedRectangle(Shape transformedRectangle) {
-        this.transformedRectangle = transformedRectangle;
-        repaint();
-    }
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (transformedRectangle != null) {
-            Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setColor(Color.BLACK);
-            g2d.draw(transformedRectangle);
-            g2d.dispose();
-            
+    //AffineTransform was a bit difficult to use. Think I got it though.
+    static class Board extends JPanel {
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            //use affinetransform to center
+            AffineTransform transform = new AffineTransform();
+            transform.translate((getWidth() - 150) / 2.0, (getHeight() - 150) / 2.0);
+            //spin
+            transform.rotate(Math.toRadians(22.5), 75, 75);
+            //utilize
+            Graphics2D alpha = (Graphics2D) g;
+            alpha.setTransform(transform);
+            //color & draw
+            alpha.setColor(Color.RED);
+            alpha.fillRect(0, 0, 150, 150);
+            //display text
+            transform.rotate(Math.toRadians(337.5), 75, 75);
+            alpha.setColor(Color.BLUE);
+            alpha.drawString("Hello, world!", 50, 350);
         }
     }
 }
