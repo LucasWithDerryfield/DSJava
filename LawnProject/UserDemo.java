@@ -24,6 +24,7 @@ public class UserDemo {
         }
         clearScreen();
         yard.printLawn(null);
+        scan.close();
     }
     //cleanup and error catching
     public static void clearScreen() {

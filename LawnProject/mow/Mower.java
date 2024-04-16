@@ -17,6 +17,7 @@ public class Mower {
         int height = yard.heightFind();
         int width = yard.widthFind();
         int corner = rando.nextInt(4);
+        System.out.println("Corner: " + corner);
         //TOP LEFT
         if (corner == 0) {
             row = 1;
@@ -31,31 +32,48 @@ public class Mower {
             col = 1;
             //BOTTOM RIGHT
         } else if (corner == 3) {
+            row = height + 1;
             col = width + 1;
         }
         dir = rando.nextInt(4);
+        System.out.println("Initial position: (" + row + ", " + col + ")");
+    }
+
+    public void Forward(Yard yard) {
+        int nextRow = row, nextCol = col;
+        if (dir == 0)
+            nextRow--;
+        else if (dir == 1)
+            nextCol++;
+        else if (dir == 2)
+            nextRow++;
+        else if (dir == 3)
+            nextCol--;
+    
+        char nextPosition = yard.lawnStatus(nextRow, nextCol);
+        if (nextPosition == '-' || nextPosition == '+') {
+            cutGrass(yard);
+            row = nextRow;
+            col = nextCol;
+        } else if (nextPosition == 'R') {
+            if ((dir == 0 && row == 1) || (dir == 1 && col == yard.widthFind()) ||
+                (dir == 2 && row == yard.heightFind()) || (dir == 3 && col == 1)) {
+                dir = (dir + 1) % 4;
+            } else {
+                dir = (dir - 1 + 4) % 4;
+            }
+        }
     }
 
     //return true if there is grass to cut
     public boolean updateMower(Yard yard) {
         char nextPosition = CheckPosition(yard);
         if (nextPosition == '+') {
-            Forward();
+            Forward(yard);
             return true;
         } else{
             return false;
         }
-    }
-
-    public void Forward() {
-        if (dir == 0)
-            row--;
-        else if (dir == 1)
-            col++;
-        else if (dir == 2)
-            row++;
-        else if (dir == 3)
-            col--;
     }
 
     public char CheckPosition(Yard yard) {
